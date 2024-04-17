@@ -1,0 +1,7 @@
+@import "reset.css";
+
+.footer{
+	background-color: orange;
+	height: 20vh;
+	position: relative;
+}

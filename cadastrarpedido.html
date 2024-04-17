@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cadastrar Pedido</title>
+	<link rel="stylesheet" type="text/css" href="css/formulario.css">
+</head>
+<body>
+	<header class="cabecalho">
+		<nav>
+			<ul class="items">
+				<li>
+					<a href="index.html">
+						Home
+					</a>
+				</li>
+				<li>
+					<a href="cadastrarpedido.html">
+						Pedido
+					</a>
+				</li>
+				<li>
+					<a href="gorjeta.html">
+						Gorjeta
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<main class="card">
+		<section class="formulario">
+			<form>
+				<h1 class="titulo">Cadastro Pedido</h1>
+				<div class="inputs">
+					<label for="nome">Nome</label>
+					<input type="text" id="nome" name="nome">
+				</div>
+				<div class="inputs">
+					<label for="numPessoasMesa">Numeros De Pessoas Na Mesa</label>
+					<input type="text" id="numPessoasMesa" name="numPessoasMesa">
+				</div>
+				<div class="inputs">
+					<label for="valorConta">Valor Conta</label>
+					<input type="text" id="valorConta" name="valorConta">
+				</div>
+				<div class="inputs">
+					<label for="escolhaPagamento">Forma Pagamento</label>
+					<select id="escolhaPagamento" name="escolhaPagamento">
+						<option value=1>
+							Pix
+						</option>
+						<option value=2>
+							PIX
+						</option>
+						<option value=3>
+							Cartão
+						</option>
+					</select>
+				</div>
+				<div class="button">
+					<button class="botao" type="submit">Pagamento</button>
+				</div>
+			</form>
+		</section>
+	</main>
+	<script src="js/index.js"></script>
+</body>
+</html>
