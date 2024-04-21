@@ -1,34 +1,121 @@
 @import "reset.css";
 
 .cabecalho{
-	background-color: blueviolet;	
+	background-color: black;	
 	height: 20vh;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2%;
 }
 
 .items{
 	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-end;
 	gap: 4rem;
-	margin: 0 auto;
-	padding: 1% 1% 0 0;
 }
 
 .items a{
-	color: black;
+	color: white;
 }
 
-.apresentacao{
+.cards{
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: center;
+	justify-content:center;
+	background-color: #D9D9D9;
+	padding: 2rem;
+	gap: 2rem;
 }
 
-.apresentacao img{
-	display: flex;
+.cardDescricao{
+	padding:30px;
+	border-radius:15px;
+	height:45vh;
+	background-color: white;
+	width: 15vw;
+}
+
+.cardDescricao img{
+	width: 120px;
+	height: 120px;
+	border-radius: 20%;
+}
+
+.restaurante{
+	width: 100px;
+}
+
+.compra{
 	width: 150px;
-	border-radius: 50%;
+	height: 50px;
+	border-radius: 20px;
+	color: white;
+	background-color: #284A5E;
+}
+
+
+@media (max-width: 1040px){
+	.cards{
+		display: flex;
+	}
+
+	.cardDescricao{
+		width: 16vw;
+		height:45vh;
+	}
+
+	.cardDescricao img{
+		width:50px;
+		height:50px;
+	}
+
+	.compra{
+		width: 11vw;
+		height: 11vh;
+	}
+}
+@media(max-width: 600px){
+	.cabecalho{
+		width: 500px;
+		height: 150px;
+	}
+
+	.items{
+		display: block;
+	}
+
+	.cards{
+		display: flex;
+		flex-direction: column;
+		padding-left: 40px;
+	}
+
+	.cardDescricao{
+		width: 48vw;
+		height: 48vh;
+	}
+
+	.cardDescricao img{
+		width:100px;
+		height:100px;
+	}
+
+	.compra{
+		width: 30vw;
+		height: 5vh;
+	}
+
+	.cardDescricao p{
+		font-size: 20px;
+		text-align: center;
+	}
+}
+
+@media (max-width: 390px){
+	.cards{
+		padding-left: 159px;
+	}
 }

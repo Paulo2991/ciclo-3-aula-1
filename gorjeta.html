@@ -8,6 +8,7 @@
 </head>
 <body>
 	<header class="cabecalho">
+		<img src="img/logo-restaurante.jpg" class="restaurante">
 		<nav>
 			<ul class="items">
 				<li>
@@ -30,18 +31,21 @@
 	</header>
 	<main class="card">
 		<section class="formulario">
-			<form>
+			<form id="myForm">
 				<h1 class="titulo">Gorjeta</h1>
 				<div class="inputs">
 					<label for="valorGorjeta">Valor Gorjeta</label>
 					<input type="text" id="valorGorjeta" name="valorGorjeta">
 				</div>
 				<div class="button">
-					<button class="botao" type="submit">Gorjeta</button>
+					<button class="botao" id="submitGorjeta" name="submitGorjeta" type="submit" onclick="calcularGorjeta();">Gorjeta</button>
 				</div>
 			</form>
 		</section>
 	</main>
+	<footer class="footer">
+		<p>Bem Vindo a Pizzaria</p>
+	</footer>
 	<script src="js/index.js"></script>
 </body>
 </html>

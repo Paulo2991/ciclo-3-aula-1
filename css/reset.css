@@ -11,5 +11,9 @@
 
 
 body{
-	background-color: white;
+	background-color: #D9D9D9;
+}
+
+html{
+	font-size: 42.6%;
 }

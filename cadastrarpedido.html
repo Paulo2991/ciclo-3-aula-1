@@ -8,6 +8,7 @@
 </head>
 <body>
 	<header class="cabecalho">
+		<img src="img/logo-restaurante.jpg" class="restaurante">
 		<nav>
 			<ul class="items">
 				<li>
@@ -30,40 +31,78 @@
 	</header>
 	<main class="card">
 		<section class="formulario">
-			<form>
+			<form id="myForm" name="formulario">
 				<h1 class="titulo">Cadastro Pedido</h1>
-				<div class="inputs">
-					<label for="nome">Nome</label>
-					<input type="text" id="nome" name="nome">
-				</div>
-				<div class="inputs">
-					<label for="numPessoasMesa">Numeros De Pessoas Na Mesa</label>
-					<input type="text" id="numPessoasMesa" name="numPessoasMesa">
-				</div>
-				<div class="inputs">
-					<label for="valorConta">Valor Conta</label>
-					<input type="text" id="valorConta" name="valorConta">
-				</div>
-				<div class="inputs">
-					<label for="escolhaPagamento">Forma Pagamento</label>
-					<select id="escolhaPagamento" name="escolhaPagamento">
-						<option value=1>
+				<section class="inputs">
+					<label for="valorConta">Valor Total Na Conta</label>
+					<input type="text" minlength="0" maxlength="9000" id="valorConta" name="valorConta" required>
+				</section>
+				<section class="inputs">
+					<label for="incluirTaxa">Incluir na taxa de serviço</label>
+					<select id="incluirTaxa" name="incluirTaxa" required>
+						<option value="">
+							Escolha a forma da taxa de serviço
+						</option>
+						<option value="sim">
+							Sim
+						</option>
+						<option value="nao">
+							Não
+						</option>
+					</select>
+				</section>
+				<section class="inputs">
+					<label for="formaPagamento">Forma Pagamento</label>
+					<select id="formaPagamento" name="formaPagamento" required>
+						<option value="">
+							Escolha a forma de pagamento
+						</option>
+						<option value="Pix">
 							Pix
 						</option>
-						<option value=2>
-							PIX
+						<option value="Dinheiro">
+							Dinheiro
 						</option>
-						<option value=3>
+						<option value="Cartao">
 							Cartão
 						</option>
 					</select>
-				</div>
+				</section>
+				<section class="inputs">
+					<label for="qtdPagantes">Quantidade De Pagantes</label>
+					<select id="qtdPagantes" name="qtdPagantes" required>
+						<option value="">
+							Escolha a quantidade de pagantes
+						</option>
+						<option value = 1>
+							1
+						</option>
+						<option value = 2>
+							2
+						</option>
+						<option value = 3>
+							3
+						</option>
+					</select>
+				</section>
 				<div class="button">
-					<button class="botao" type="submit">Pagamento</button>
+					<button class="botao" id="submitBtn" name="submitBtn" onclick="abrirModal();" type="button">Pagamento</button>
 				</div>
 			</form>
 		</section>
+		<div class="modal" id="myModal">
+			<div class="modalContent">
+				<span class="close" onclick="closeModel()">&times;</span>
+				<h1 id="titulo"></h1>
+				<div id="sim"></div>
+				<a href="cadastrarpedido.html">Não</a>
+				<p id="errorMessage"></p>
+			</div>
+		</div>
 	</main>
+	<footer class="footer">
+		<p>Bem Vindo a Pizzaria</p>
+	</footer>
 	<script src="js/index.js"></script>
 </body>
 </html>

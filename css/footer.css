@@ -1,7 +1,26 @@
 @import "reset.css";
 
 .footer{
-	background-color: orange;
+	background-color: black;
 	height: 20vh;
-	position: relative;
+}
+
+.footer p{
+	text-align: center;
+	color: white;
+}
+
+@media (max-width: 600px){
+	.footer{
+		position: relative;
+		top: 100px;
+		width: 500px;
+	}
+
+}
+
+@media (max-width: 340px){
+	.footer{
+		top: 150px;	
+	}
 }
