@@ -1,20 +1,40 @@
 @import "reset.css";
 
 .footer{
-	background-color: black;
+	background-color: #f5f5dc;
 	height: 20vh;
 }
 
-.footer p{
+.footer h1{
 	text-align: center;
-	color: white;
+	color: black;
+}
+
+.contatos{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding:0 2%;
+}
+
+
+.redesSociais{
+	display: flex;
+	gap: 4rem;
+}
+
+.redesSociais img{
+	width: 80px;
+	border-radius: 10px;
 }
 
 @media (max-width: 600px){
 	.footer{
-		position: relative;
-		top: 100px;
-		width: 500px;
+		width: 513px;
+	}
+
+	.redesSociais img{
+		width: 35px;
 	}
 
 }

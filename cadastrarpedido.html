@@ -21,11 +21,6 @@
 						Pedido
 					</a>
 				</li>
-				<li>
-					<a href="gorjeta.html">
-						Gorjeta
-					</a>
-				</li>
 			</ul>
 		</nav>
 	</header>
@@ -52,23 +47,6 @@
 					</select>
 				</section>
 				<section class="inputs">
-					<label for="formaPagamento">Forma Pagamento</label>
-					<select id="formaPagamento" name="formaPagamento" required>
-						<option value="">
-							Escolha a forma de pagamento
-						</option>
-						<option value="Pix">
-							Pix
-						</option>
-						<option value="Dinheiro">
-							Dinheiro
-						</option>
-						<option value="Cartao">
-							Cartão
-						</option>
-					</select>
-				</section>
-				<section class="inputs">
 					<label for="qtdPagantes">Quantidade De Pagantes</label>
 					<select id="qtdPagantes" name="qtdPagantes" required>
 						<option value="">
@@ -85,23 +63,47 @@
 						</option>
 					</select>
 				</section>
+				<section class="inputs">
+					<label for="valorGorjeta">Valor Gorjeta</label>
+					<input type="text" minlength="0" maxlength="9000" id="valorGorjeta" name="valorGorjeta">
+				</section>
 				<div class="button">
-					<button class="botao" id="submitBtn" name="submitBtn" onclick="abrirModal();" type="button">Pagamento</button>
+					<button class="botao" id="submitBtn" name="submitBtn" type="button">Pagamento</button>
 				</div>
 			</form>
 		</section>
+		<span class="erro" id="mensagemErro"></span>
 		<div class="modal" id="myModal">
 			<div class="modalContent">
-				<span class="close" onclick="closeModel()">&times;</span>
-				<h1 id="titulo"></h1>
-				<div id="sim"></div>
-				<a href="cadastrarpedido.html">Não</a>
-				<p id="errorMessage"></p>
+				<span class="close">&times;</span>
+				<h2 id="titulo">Esse pagamento terá desconto?</h2>
+				<p>Apenas para contas pagas em Pix, débito ou dinheiro.</p>
+				<div class="acoes">
+					<button id="sim" class="buttonSim">Sim</button>
+					<button id="nao" class="buttonNao">Não</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal" id="resultModal">
+			<div class="modalContent">
+				<span class="close">&times;</span>
+				<p id="resultado"></p>
 			</div>
 		</div>
 	</main>
 	<footer class="footer">
-		<p>Bem Vindo a Pizzaria</p>
+		<h1>Bem Vindo a Pizzaria</h1>
+		<section class="contatos">
+			<img src="img/logo-restaurante.jpg" class="restaurante">
+			<div class="redesSociais">
+				<img src="https://i.pinimg.com/originals/ac/a9/4d/aca94d8d072082682dec2a1584533dda.png" alt="(38) 99545-6789">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/800px-Instagram_logo_2022.svg.png">
+				<img src="https://t.ctcdn.com.br/DMxRsoFn2EzzWk6WaToT6sIidL8=/i489928.jpeg">
+				<img src="https://t.ctcdn.com.br/b2gehl3ZRAKUVpehWpv4ZR-yBvE=/i489929.jpeg">
+
+			</div>
+		</section>
 	</footer>
 	<script src="js/index.js"></script>
 </body>

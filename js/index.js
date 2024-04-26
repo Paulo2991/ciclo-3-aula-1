@@ -1,89 +1,103 @@
-let listaPedido = [];
-let listaGorjeta = [];
-let titulo = "<h1>Este pagamento terá desconto? Apenas para contas pagas pix,debito ou dinheiro!</h1>";
+document.addEventListener("DOMContentLoaded", function () {
+	const myForm = document.getElementById('myForm');
+	const submitBtn = document.getElementById('submitBtn');
+	const myModal = document.getElementById('myModal');
+	const resultModal = document.getElementById('resultModal');
+	const resultado = document.getElementById('resultado');
+	const nao = document.getElementById('nao');
+	const sim = document.getElementById('sim');
+	const closeButtons = document.querySelectorAll('.close');
+	const mensagemErro = document.getElementById('mensagemErro');
+	const valorGorjeta = document.getElementById('valorGorjeta');
+	const gorjeta = parseFloat(valorGorjeta.value);
 
-function abrirModal(){
-	document.getElementById('myModal').style.display = 'block';
-	document.getElementById('titulo').innerHTML = titulo;
-	let buttonHTML = `<button id = "buttonClick">Sim</button>`;
-	let button = document.getElementById('sim');
-	button.innerHTML = buttonHTML;
-	document.getElementById('buttonClick').addEventListener('click',function(){
-		pedido();
-	});
-}
-
-function closeModel(){
-	document.getElementById('myModal').style.display = 'none';
-}
-
-function pedido(){
-	let valorConta = parseFloat(document.getElementById('valorConta').value);
-	let incluirTaxa = document.getElementById('incluirTaxa').value;
-	let formaPagamento = document.getElementById('formaPagamento').value;
-	let qtdPagantes = parseInt(document.getElementById('qtdPagantes').value);
-
-	if (isNaN(valorConta) || valorConta <= 0 || isNaN(qtdPagantes) || qtdPagantes <= 0 || valorConta === "" || valorConta === null || incluirTaxa.trim() === "" || incluirTaxa === null || formaPagamento.trim() === "" || formaPagamento === null || qtdPagantes === "" || qtdPagantes == null) {
-		showModalMessage(`Por favor, os campos Valor Conta,Incluir Taxa,Forma Pagamento,Quantidade De Pagantes são obrigatório ou você colocou um valor invalido nos campos Valor Conta,Quantidade De Pagantes.`);
-		return;
+	function isNumeric(value) {
+		return /^-?\d*\.?\d+$/.test(value);
 	}
 
-	const pedidos = {
-		valorConta:valorConta,
-		incluirTaxa:incluirTaxa,
-		formaPagamento:formaPagamento,
-		qtdPagantes:qtdPagantes,
-		
-	};
+	submitBtn.addEventListener('click',function(){
+		let camposObrigatorios = '';
+		const inputs = document.querySelectorAll('input[required]');
+		inputs.forEach(input => {
+			if (!input.checkValidity()) {
+				camposObrigatorios += `O campo ${input.name} é obrigatório.<br>`;
+			}else if(input.value <= 0 || !isNumeric(input.value.trim())){
+				camposObrigatorios += `O ${input.name} deve ser maior que 0. <br>
+				O ${input.name} é númerico <br>`;
+			}else{
+				mensagemErro.innerHTML = '';
+			}
+		});
 
-	listaPedido.push(pedidos);
-	let pedidoCadastrado = "<h1>Pedido cadastrado com sucesso!</h1><br>";
-	for(let i = 0; i < listaPedido.length; i++){
-		let escolhaPagamento = listaPedido[i].formaPagamento;
-		switch(escolhaPagamento){
-		case "Pix":
-			listaPedido[i].valorConta -= listaPedido[i].valorConta * 0.10;
-			let calculoValorPix = listaPedido[i].valorConta / listaPedido[i].qtdPagantes;
-			pedidoCadastrado += `ID: ${i + 1} | Valor Conta: ${calculoValorPix.toFixed(2)} | Incluir Na Taxa: ${listaPedido[i].incluirTaxa} | Forma De Pagamento: ${listaPedido[i].formaPagamento} | Quantidade De Pessoas Pagantes: ${listaPedido[i].qtdPagantes} <br>`;
-			break;
-		case "Dinheiro":
-			listaPedido[i].valorConta -= listaPedido[i].valorConta * 0.10;
-			let calculoValorDinheiro = listaPedido[i].valorConta / listaPedido[i].qtdPagantes;
-			pedidoCadastrado += `ID: ${i + 1} | Valor Conta: ${calculoValorDinheiro.toFixed(2)} | Incluir Na Taxa: ${listaPedido[i].incluirTaxa} | Forma De Pagamento: ${listaPedido[i].formaPagamento} | Quantidade De Pessoas Pagantes: ${listaPedido[i].qtdPagantes} <br>`;
-			break;
-		case "Cartao":
-			let calculoValorCartao = listaPedido[i].valorConta / listaPedido[i].qtdPagantes;
-			pedidoCadastrado += `ID: ${i + 1} | Valor Conta: ${calculoValorCartao.toFixed(2)} | Incluir Na Taxa: ${listaPedido[i].incluirTaxa} | Forma De Pagamento: ${listaPedido[i].formaPagamento} | Quantidade De Pessoas Pagantes: ${listaPedido[i].qtdPagantes} <br>`;
-			break;
-		default:
-			alert("Opção Invalida:");
+		const selects = document.querySelectorAll('select[required]');
+		selects.forEach(select => {
+			if (!select.checkValidity()) {
+				camposObrigatorios += `O campo ${select.name} é obrigatório.<br>`;
+			}else{
+				mensagemErro.innerHTML = '';
+			}
+		});	
+
+		if(gorjeta <= 0 || !isNumeric(gorjeta)){
+			camposObrigatorios += `A gorjeta deve ser maior que 0 <br>
+			O campo gorjeta é numerico`;
+		}else{
+			mensagemErro.innerHTML = '';
+		}
+
+		if (camposObrigatorios === '') {
+			myModal.style.display = 'block';
+		} else {
+			mensagemErro.innerHTML = camposObrigatorios;
+		}
+	});
+
+	nao.addEventListener('click',function(){
+		pedido(false);
+	});
+
+	sim.addEventListener('click',function(){
+		pedido(true);
+	});
+
+	closeButtons.forEach(function (button){
+		button.addEventListener('click', function(){
+			myModal.style.display = 'none';
+			resultModal.style.display = 'none';
+		});
+	});
+
+	window.addEventListener('click', function(event){
+		if(event.target == myModal || event.target == resultModal){
+			myModal.style.display = 'none';
+			resultModal.style.display = 'none';
+		}
+	});
+
+	function pedido(disconto){
+		const valorConta = document.getElementById('valorConta').value;
+		const incluirTaxa = document.getElementById('incluirTaxa').value;
+		const qtdPagantes = document.getElementById('qtdPagantes').value;
+		let valorDisconto = parseInt(document.getElementById('sim').value);
+		const gorjetaAplicada = document.getElementById('valorGorjeta').value;
+		let i = 0;
+
+		if(disconto === true){
+			valorDisconto = valorConta * 0.10;
+			let aplicandoDisconto = valorConta - valorDisconto;
+			let calculoDisconto = aplicandoDisconto / qtdPagantes;
+			resultado.innerHTML = `ID: ${i + 1} | Valor Conta: ${calculoDisconto.toFixed(2)} | Incluir Na Taxa: ${incluirTaxa}  | Quantidade De Pessoas Pagantes: ${qtdPagantes} | Gorjeta: ${gorjetaAplicada} <br>`;
+			resultModal.style.display = 'block';
+		}else{
+			let calculoSemDisconto = valorConta / qtdPagantes;
+			resultado.innerHTML = `ID: ${i + 1} | Valor Conta: ${calculoSemDisconto.toFixed(2)} | Incluir Na Taxa: ${incluirTaxa}  | Quantidade De Pessoas Pagantes: ${qtdPagantes} | Gorjeta: ${gorjetaAplicada} <br>`;
+			resultModal.style.display = 'block';
 		}
 	}
-	console.log(listaPedido);
-	showModalMessage(pedidoCadastrado);
-}
 
-function showModalMessage(message) {
-	document.getElementById('errorMessage').innerHTML = message;
-	abrirModal();
-}
+});
 
 
-function calcularGorjeta(){
-	let valorGorjeta = parseFloat(document.getElementById('valorGorjeta').value);
-	if(isNaN(valorGorjeta) || valorGorjeta < 0 || valorGorjeta === "" || valorGorjeta === null){
-		showModalMessage(`Por favor, o campo Valor Gorjeta é obrigatório ou você colocou um valor invalido no campo Valor Gorjeta.`);
-		return;
-	}
-	pedidoCadastrado = "Gorjeta Inserida Com Sucesso!";
-	for(let j = 0; j < listaPedido.length; j++){
-		if(listaPedido[j].length !== 0){
-			let calculoGorjeta  = (listaPedido[j].valorConta * valorGorjeta)/100;
-			listaGorjeta.push(calculoGorjeta);
-			pedidoCadastrado += "O valor da gorjeta é: " + calculoGorjeta;
-			console.log(calculoGorjeta);
-		}else{
-			console.log("Gorjeta não cadastrada:");
-		}		
-	}
-}
+
+
+

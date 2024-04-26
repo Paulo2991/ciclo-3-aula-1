@@ -1,7 +1,7 @@
 @import "reset.css";
 
 .cabecalho{
-	background-color: black;	
+	background-color: #f5f5dc;	
 	height: 20vh;
 	display: flex;
 	flex-direction: row;
@@ -16,7 +16,7 @@
 }
 
 .items a{
-	color: white;
+	color: black;
 }
 
 .cards{
@@ -49,17 +49,24 @@
 }
 
 .compra{
-	width: 150px;
-	height: 50px;
+	width: 120px;
+	height: 30px;
+	margin-left: 6%;
 	border-radius: 20px;
 	color: white;
 	background-color: #284A5E;
+}
+
+.preco{
+	text-align: center;
 }
 
 
 @media (max-width: 1040px){
 	.cards{
 		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.cardDescricao{
@@ -70,16 +77,49 @@
 	.cardDescricao img{
 		width:50px;
 		height:50px;
+		margin-left: 20px;
 	}
 
 	.compra{
-		width: 11vw;
-		height: 11vh;
+		width: 100px;
+		height: 30px;
+		margin-right:5em;
+	}
+
+	.preco{
+		text-align: center;
 	}
 }
+
+@media (max-width: 900px){
+	.cabecalho{
+		width: 109vw;
+	}
+
+	.footer{
+		width: 109vw;
+	}
+
+	.cardDescricao img{
+		width:45px;
+		height:45px;
+		margin-left: 15px;
+	}
+
+	.compra{
+		width: 100px;
+		margin-left: -15px;
+		height: 30px;
+	}
+
+	.preco{
+		text-align: center;
+	}
+}
+
 @media(max-width: 600px){
 	.cabecalho{
-		width: 500px;
+		width: 550px;
 		height: 150px;
 	}
 
@@ -106,10 +146,11 @@
 	.compra{
 		width: 30vw;
 		height: 5vh;
+		margin-left: 10px;
 	}
 
-	.cardDescricao p{
-		font-size: 20px;
+	.preco{
+		font-size: 18px;
 		text-align: center;
 	}
 }
@@ -117,5 +158,18 @@
 @media (max-width: 390px){
 	.cards{
 		padding-left: 159px;
+	}
+
+	.cardDescricao img{
+		margin-left: 0.25px;
+	}
+
+	.preco{
+		text-align: center;
+	}
+
+	.compra{
+		height: 5vh;
+		margin-left: 0.25px;
 	}
 }

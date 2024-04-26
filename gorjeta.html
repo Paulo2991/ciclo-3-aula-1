@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,9 +38,19 @@
 					<input type="text" id="valorGorjeta" name="valorGorjeta">
 				</div>
 				<div class="button">
-					<button class="botao" id="submitGorjeta" name="submitGorjeta" type="submit" onclick="calcularGorjeta();">Gorjeta</button>
+					<button class="botao" id="submitGorjeta" name="submitGorjeta" type="button" onclick="abrirModalGorjeta();">Gorjeta</button>
 				</div>
 			</form>
+			<div class="modal" id="myModalGorjeta">
+				<div class="modalContent">
+					<span class="close" onclick="closeModel()">&times;</span>
+					<div class="acoes">
+						<div id="calculoGorjeta"></div>
+						<a id="nao"></a>					
+					</div>
+					<p id="errorMessageGorjeta"></p>
+				</div>
+			</div>
 		</section>
 	</main>
 	<footer class="footer">
