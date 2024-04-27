@@ -21,6 +21,11 @@
 						Pedido
 					</a>
 				</li>
+				<li>
+					<a href="gorjeta.html">
+						Gorjeta
+					</a>
+				</li>
 			</ul>
 		</nav>
 	</header>
@@ -63,21 +68,17 @@
 						</option>
 					</select>
 				</section>
-				<section class="inputs">
-					<label for="valorGorjeta">Valor Gorjeta</label>
-					<input type="text" minlength="0" maxlength="9000" id="valorGorjeta" name="valorGorjeta">
-				</section>
 				<div class="button">
 					<button class="botao" id="submitBtn" name="submitBtn" type="button">Pagamento</button>
 				</div>
+				<span class="erro" id="mensagemErro"></span>
 			</form>
 		</section>
-		<span class="erro" id="mensagemErro"></span>
 		<div class="modal" id="myModal">
 			<div class="modalContent">
 				<span class="close">&times;</span>
 				<h2 id="titulo">Esse pagamento terá desconto?</h2>
-				<p>Apenas para contas pagas em Pix, débito ou dinheiro.</p>
+				<p class="aviso">Apenas para contas pagas em Pix, débito ou dinheiro.</p>
 				<div class="acoes">
 					<button id="sim" class="buttonSim">Sim</button>
 					<button id="nao" class="buttonNao">Não</button>
@@ -88,7 +89,7 @@
 		<div class="modal" id="resultModal">
 			<div class="modalContent">
 				<span class="close">&times;</span>
-				<p id="resultado"></p>
+				<p class="mostrarResultado"  id="resultado"></p>
 			</div>
 		</div>
 	</main>
@@ -101,7 +102,6 @@
 				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/800px-Instagram_logo_2022.svg.png">
 				<img src="https://t.ctcdn.com.br/DMxRsoFn2EzzWk6WaToT6sIidL8=/i489928.jpeg">
 				<img src="https://t.ctcdn.com.br/b2gehl3ZRAKUVpehWpv4ZR-yBvE=/i489929.jpeg">
-
 			</div>
 		</section>
 	</footer>

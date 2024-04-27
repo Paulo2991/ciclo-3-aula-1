@@ -31,24 +31,21 @@
 	</header>
 	<main class="card">
 		<section class="formulario">
-			<form id="myForm">
+			<form id="myForm" name="formulario">
 				<h1 class="titulo">Gorjeta</h1>
-				<div class="inputs">
+				<section class="inputs">
 					<label for="valorGorjeta">Valor Gorjeta</label>
-					<input type="text" id="valorGorjeta" name="valorGorjeta">
-				</div>
+					<input type="text" minlength="0" maxlength="9000" id="valorGorjeta" name="valorGorjeta" required>
+				</section>
 				<div class="button">
-					<button class="botao" id="submitGorjeta" name="submitGorjeta" type="button" onclick="abrirModalGorjeta();">Gorjeta</button>
+					<button class="botao" id="submitBtn" name="submitBtn" type="button" >Gorjeta</button>
 				</div>
+				<span class="erro" id="mensagemErro"></span>
 			</form>
-			<div class="modal" id="myModalGorjeta">
+			<div class="modal" id="resultModal">
 				<div class="modalContent">
-					<span class="close" onclick="closeModel()">&times;</span>
-					<div class="acoes">
-						<div id="calculoGorjeta"></div>
-						<a id="nao"></a>					
-					</div>
-					<p id="errorMessageGorjeta"></p>
+					<span class="close">&times;</span>
+					<p class="mostrarResultado" id="resultado"></p>
 				</div>
 			</div>
 		</section>
@@ -56,6 +53,6 @@
 	<footer class="footer">
 		<p>Bem Vindo a Pizzaria</p>
 	</footer>
-	<script src="js/index.js"></script>
+	<script src="js/gorjeta.js"></script>
 </body>
 </html>

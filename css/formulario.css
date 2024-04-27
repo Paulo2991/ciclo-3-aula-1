@@ -116,7 +116,7 @@
 	transition: 0.6s;
 }
 
-#nao{
+.buttonNao{
 	background-color: gray;
 	color: #fff;
 	border: 1px solid #000000;
@@ -132,7 +132,6 @@
 	text-transform: uppercase;
 	width: 44%;
 	margin: 0 2%;
-
 }
 
 #titulo{
@@ -141,6 +140,16 @@
 
 .erro{
 	color: red;
+}
+
+.aviso{
+	text-align: center;
+	font-weight: bold;
+}
+
+.mostrarResultado{
+	text-align: center;
+	color: greenyellow;
 }
 
 .close {

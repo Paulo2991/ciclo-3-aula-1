@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	const sim = document.getElementById('sim');
 	const closeButtons = document.querySelectorAll('.close');
 	const mensagemErro = document.getElementById('mensagemErro');
-	const valorGorjeta = document.getElementById('valorGorjeta');
-	const gorjeta = parseFloat(valorGorjeta.value);
 
 	function isNumeric(value) {
 		return /^-?\d*\.?\d+$/.test(value);
@@ -21,9 +19,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		inputs.forEach(input => {
 			if (!input.checkValidity()) {
 				camposObrigatorios += `O campo ${input.name} é obrigatório.<br>`;
-			}else if(input.value <= 0 || !isNumeric(input.value.trim())){
-				camposObrigatorios += `O ${input.name} deve ser maior que 0. <br>
-				O ${input.name} é númerico <br>`;
+			}else if(input.value <= 0){
+				camposObrigatorios += `O ${input.name} deve ser maior que 0. <br>`;
+			}else if(!isNumeric(input.value.trim())){
+				camposObrigatorios += `O ${input.name} é númerico. <br>`;
 			}else{
 				mensagemErro.innerHTML = '';
 			}
@@ -37,13 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
 				mensagemErro.innerHTML = '';
 			}
 		});	
-
-		if(gorjeta <= 0 || !isNumeric(gorjeta)){
-			camposObrigatorios += `A gorjeta deve ser maior que 0 <br>
-			O campo gorjeta é numerico`;
-		}else{
-			mensagemErro.innerHTML = '';
-		}
 
 		if (camposObrigatorios === '') {
 			myModal.style.display = 'block';
@@ -79,18 +71,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		const incluirTaxa = document.getElementById('incluirTaxa').value;
 		const qtdPagantes = document.getElementById('qtdPagantes').value;
 		let valorDisconto = parseInt(document.getElementById('sim').value);
-		const gorjetaAplicada = document.getElementById('valorGorjeta').value;
 		let i = 0;
 
 		if(disconto === true){
 			valorDisconto = valorConta * 0.10;
 			let aplicandoDisconto = valorConta - valorDisconto;
 			let calculoDisconto = aplicandoDisconto / qtdPagantes;
-			resultado.innerHTML = `ID: ${i + 1} | Valor Conta: ${calculoDisconto.toFixed(2)} | Incluir Na Taxa: ${incluirTaxa}  | Quantidade De Pessoas Pagantes: ${qtdPagantes} | Gorjeta: ${gorjetaAplicada} <br>`;
+			resultado.innerHTML = `ID: ${i + 1} | Valor Conta: ${calculoDisconto.toFixed(2)} | Incluir Na Taxa: ${incluirTaxa}  | Quantidade De Pessoas Pagantes: ${qtdPagantes} <br>`;
 			resultModal.style.display = 'block';
 		}else{
 			let calculoSemDisconto = valorConta / qtdPagantes;
-			resultado.innerHTML = `ID: ${i + 1} | Valor Conta: ${calculoSemDisconto.toFixed(2)} | Incluir Na Taxa: ${incluirTaxa}  | Quantidade De Pessoas Pagantes: ${qtdPagantes} | Gorjeta: ${gorjetaAplicada} <br>`;
+			resultado.innerHTML = `ID: ${i + 1} | Valor Conta: ${calculoSemDisconto.toFixed(2)} | Incluir Na Taxa: ${incluirTaxa}  | Quantidade De Pessoas Pagantes: ${qtdPagantes} <br>`;
 			resultModal.style.display = 'block';
 		}
 	}
